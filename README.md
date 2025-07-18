@@ -1,36 +1,151 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛠️ Portofolio Web Boilerplate
 
-## Getting Started
+This is a modern, scalable **Next.js 15** boilerplate built with **React 19**, **Tailwind CSS 4**, and **ShadCN UI** (Radix-based components). It provides a solid foundation for building accessible, component-driven web applications with a clean structure, reusable components, and developer-friendly conventions.
 
-First, run the development server:
+---
+
+## 🚀 Tech Stack
+
+| Feature              | Library / Tool                                                                            |
+| -------------------- | ----------------------------------------------------------------------------------------- |
+| Framework            | [Next.js 15](https://nextjs.org)                                                          |
+| UI Components        | [ShadCN UI](https://ui.shadcn.com) + [Radix UI](https://www.radix-ui.com/)                |
+| Forms                | [React Hook Form](https://react-hook-form.com) + [Zod](https://github.com/colinhacks/zod) |
+| Table                | [TanStack Table](https://tanstack.com/table)                                              |
+| Carousel             | [Embla Carousel](https://www.embla-carousel.com/)                                         |
+| Toast / Notification | [Sonner](https://sonner.emilkowal.dev/)                                                   |
+| Icons                | [Lucide React](https://lucide.dev/)                                                       |
+| Styling              | [Tailwind CSS 4](https://tailwindcss.com)                                                 |
+| Utility Classnames   | `clsx`, `cva`, `tailwind-merge`                                                           |
+| Routing              | App Router w/ Layouts                                                                     |
+| Animation            | `tw-animate-css` (Tailwind plugin)                                                        |
+| State Management     | Local/component state (context optional)                                                  |
+| Miscellaneous        | `date-fns`, `cmdk`, `vaul`, `input-otp`                                                   |
+
+---
+
+## 📁 Directory Structure
+
+```
+📦portofolio-web
+ ┣ 📂app              # Next.js App Router pages
+ ┃ ┣ 📂(auth)/login
+ ┃ ┣ 📂(landing)/home
+ ┃ ┣ 📂(manage)/(panel)/dashboard
+ ┣ 📂components       # Reusable UI components (e.g., button, modal)
+ ┃ ┣ 📂ui             # ShadCN + custom components
+ ┃ ┣ 📂landing        # Landing page-specific components
+ ┣ 📂features         # Feature/domain-specific logic
+ ┣ 📂hooks            # Custom hooks (e.g., use-mobile)
+ ┣ 📂lib              # Utilities, constants
+ ┣ 📂prisma           # Prisma schema and seeding
+ ┣ 📂public           # Static assets
+ ┣ 📂utils            # Shared helper functions
+ ┣ 📜next.config.mjs
+ ┣ 📜postcss.config.mjs
+ ┣ 📜tailwind.config.mjs
+ ┣ 📜package.json
+ ┗ 📜README.md
+```
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/yourusername/portofolio-web-boilerplate.git
+cd portofolio-web-boilerplate
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+### 3. Run the Dev Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## ✅ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- ⚡ App Router with `layout.js` and route groups
+- 🎨 Fully styled with TailwindCSS + ShadCN UI
+- 🧩 Modular file structure (hooks, lib, features)
+- ✅ Form validation with React Hook Form + Zod
+- 💬 Toasts with Sonner
+- 📱 Mobile-friendly design (e.g. `use-mobile` hook)
+- 🛠 Easy customization and scalability
+- 🔒 Component-based auth pattern (coming soon)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```json
+"scripts": {
+  "dev": "next dev --turbopack",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "format": "prettier --write .",
+  "typecheck": "tsc --noEmit"
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📝 Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create a `.env.local` file:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+DATABASE_URL=postgresql://...
+NEXT_PUBLIC_API_URL=https://your-api.com
+```
+
+> ✨ Customize as needed per environment.
+
+---
+
+## 🌐 Deployment
+
+This project is optimized for **[Vercel](https://vercel.com/)**. Simply push to GitHub and import the repo into your Vercel dashboard.
+
+---
+
+## 🧠 Optional Enhancements
+
+| Feature         | Description                          |
+| --------------- | ------------------------------------ |
+| TypeScript      | Add types to improve DX              |
+| Auth System     | NextAuth.js or custom JWT pattern    |
+| i18n            | Add `next-intl` or `next-i18next`    |
+| CMS Integration | Sanity, Strapi, or Notion (optional) |
+| Testing         | Playwright or Vitest setup           |
+
+---
+
+## 🧑‍💻 Contributing
+
+This boilerplate is meant to be **clean, minimal, and extensible**. Feel free to fork and adapt it to your use case. If you make improvements, consider opening a PR or sharing your repo back.
+
+---
+
+## 📄 License
+
+MIT License © [Jamaludin21](https://github.com/Jamaludin21)
+
+---
+
+## 💬 Feedback
+
+Got questions or suggestions? Feel free to [open an issue](https://github.com/yourusername/portofolio-web-boilerplate/issues) or reach out via GitHub.
