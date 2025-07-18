@@ -1,4 +1,4 @@
-# 🛠️ Portofolio Web Boilerplate
+# 🛠️ Web NEXT JS Boilerplate
 
 This is a modern, scalable **Next.js 15** boilerplate built with **React 19**, **Tailwind CSS 4**, and **ShadCN UI** (Radix-based components). It provides a solid foundation for building accessible, component-driven web applications with a clean structure, reusable components, and developer-friendly conventions.
 
@@ -27,7 +27,7 @@ This is a modern, scalable **Next.js 15** boilerplate built with **React 19**, *
 ## 📁 Directory Structure
 
 ```
-📦portofolio-web
+📦boilerplate-next
  ┣ 📂app              # Next.js App Router pages
  ┃ ┣ 📂(auth)/login
  ┃ ┣ 📂(landing)/home
@@ -55,8 +55,8 @@ This is a modern, scalable **Next.js 15** boilerplate built with **React 19**, *
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/portofolio-web-boilerplate.git
-cd portofolio-web-boilerplate
+git clone https://github.com/Jamaludin21/boilerplate-next.git
+cd boilerplate-next
 ```
 
 ### 2. Install Dependencies
@@ -148,4 +148,4 @@ MIT License © [Jamaludin21](https://github.com/Jamaludin21)
 
 ## 💬 Feedback
 
-Got questions or suggestions? Feel free to [open an issue](https://github.com/yourusername/portofolio-web-boilerplate/issues) or reach out via GitHub.
+Got questions or suggestions? Feel free to [open an issue](https://github.com/Jamaludin21/boilerplate-next/issues) or reach out via GitHub.
