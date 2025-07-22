@@ -23,7 +23,7 @@ export function NavbarLanding () {
         'fixed top-0 z-50 px-6 w-full backdrop-blur-sm dark:bg-black/60'
       )}
     >
-      <div className='container flex h-16 items-center justify-between'>
+      <div className='flex h-16 items-center justify-between'>
         {/* Logo */}
         <Link href='/home' className='text-lg font-bold '>
           James Dev

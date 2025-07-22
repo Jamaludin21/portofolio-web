@@ -22,6 +22,11 @@ const nextConfig = {
         hostname: "ohl6h4pfccuxujvz.public.blob.vercel-storage.com",
         pathname: "/upload/**",
       },
+      {
+        protocol: "https",
+        hostname: "ohl6h4pfccuxujvz.public.blob.vercel-storage.com",
+        pathname: "/company/**",
+      },
     ],
   },
 };
