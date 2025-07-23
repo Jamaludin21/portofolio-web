@@ -5,12 +5,14 @@ const prisma = new PrismaClient();
 async function main() {
   await prisma.hero.deleteMany();
   await prisma.experience.deleteMany();
+  await prisma.skill.deleteMany();
+  await prisma.education.deleteMany();
 
   await prisma.hero.create({
     data: {
       name: "Jamaludin Hakim Harsoyo",
       role: "Full Stack Developer & Tech Enthusiast",
-      summary: `Versatile Full Stack Developer with a strong foundation in both Frontend and Backend technologies. Informatics graduate from Universitas Bhayangkara Jakarta Raya with comprehensive experience in various frameworks including React, Next, Angular, Express, CodeIgniter, and Laravel. Proven track record in both professional settings and freelance projects, demonstrating adaptability and a keen ability to deliver efficient, innovative solutions across different development environments.`,
+      summary: `Build scalable web applications with clean code and careful design. I focus on modern JavaScript frameworks and backend structure. I create user-friendly interfaces and turn ideas into reality through engaging digital experiences.`,
       imageUrl:
         "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/hero/20250406_080349_no_background-aKgZZvdK5IDeOKM9Y2kFCeac3eHFgm.png",
     },
@@ -57,6 +59,33 @@ async function main() {
         imageUrl:
           "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/company/pt_kognitif_skema_indonesia_logo-gFeCrEdujGyhcLxrFA0DyKvH1hBUq3.jpeg",
         content: `· Handled development of E-Commerce module in Solotechnopark & Mandiri projects\n· Developed frontend of the website with data consumption/fetching from MySQL & Firebase databases\n· Collaborated with teams from each department to ensure campaign strategies aligned with business values`,
+      },
+    ],
+  });
+
+  await prisma.skill.createMany({
+    data: [
+      { name: "Next Js", level: "Intermediate", category: "Frontend" },
+      { name: "React Js", level: "Intermediate", category: "Frontend" },
+      { name: "Node Js", level: "Intermediate", category: "Backend" },
+      { name: "PostgreSQL", level: "Intermediate", category: "Database" },
+      { name: "Tailwind CSS", level: "Intermediate", category: "Frontend" },
+      { name: "Prisma", level: "Beginner", category: "ORM" },
+    ],
+  });
+
+  await prisma.education.createMany({
+    data: [
+      {
+        school: "Universitas Bhayangkara Jakarta Raya",
+        major: "Informatics Engineering",
+        degree: "Bachelor's Degree",
+        startDate: new Date("2019-09-01"),
+        endDate: new Date("2023-08-01"),
+        description:
+          "Focused on software development, web apps, and databases.",
+        imageUrl:
+          "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/company/Logo_ubhara-drWVl8tdeVPa7lVmppfAxaPxdTfPw8.png",
       },
     ],
   });

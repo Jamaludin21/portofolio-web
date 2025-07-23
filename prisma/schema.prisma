@@ -8,14 +8,14 @@ datasource db {
 }
 
 model Hero {
-  id            Int      @id @default(autoincrement())
-  name          String
-  role          String
-  summary       String
-  imageUrl      String
-  isPublished   Boolean  @default(true)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  name        String
+  role        String
+  summary     String
+  imageUrl    String
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Experience {
@@ -30,4 +30,28 @@ model Experience {
   isPublished Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Skill {
+  id          Int      @id @default(autoincrement())
+  name        String
+  level       String    // E.g., Beginner, Intermediate, Advanced
+  category    String    // E.g., Frontend, Backend, Tools
+  isPublished Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Education {
+  id          Int      @id @default(autoincrement())
+  school      String
+  major       String
+  degree      String
+  startDate   DateTime
+  endDate     DateTime?
+  description String
+  imageUrl    String
+  isPublished Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }

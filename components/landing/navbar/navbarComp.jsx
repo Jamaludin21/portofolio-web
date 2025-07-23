@@ -1,19 +1,29 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { ThemeToggle } from '@/components/landing/toggle/theme-toggle'
 
-// const navItems = [
-//   { label: 'Home', href: '#home' },
-//   { label: 'Product', href: '#product' },
-//   { label: 'About', href: '#about' },
-//   { label: 'Contact', href: '#contact' }
-// ]
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink
+} from '@/components/ui/navigation-menu' // adjust path as needed
+
+const navItems = [
+  { label: 'Home', href: '/home' },
+  { label: 'About me', href: '/about' },
+  { label: 'Portfolio', href: '/portofolio' },
+  { label: 'Contact', href: '/contact' }
+]
 
 export function NavbarLanding () {
+  const pathname = usePathname()
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -25,22 +35,31 @@ export function NavbarLanding () {
     >
       <div className='flex h-16 items-center justify-between'>
         {/* Logo */}
-        <Link href='/home' className='text-lg font-bold '>
+        <Link href='/home' className='text-lg font-bold'>
           James Dev
         </Link>
 
-        {/* Navigation */}
-        {/* <div className='hidden items-center gap-6 md:flex'>
-          {navItems.map(item => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className='text-sm font-medium transition-colors hover:text-primary'
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div> */}
+        {/* Navigation Menu */}
+        <NavigationMenu className='hidden md:flex'>
+          <NavigationMenuList>
+            {navItems.map(item => (
+              <NavigationMenuItem key={item.href}>
+                <NavigationMenuLink
+                  asChild
+                  active={pathname === item.href}
+                  className={cn(
+                    'text-sm font-medium transition-colors px-3 py-2 cursor-pointer',
+                    pathname === item.href
+                      ? 'bg-accent/50 text-primary'
+                      : 'text-muted-foreground hover:text-primary hover:bg-accent'
+                  )}
+                >
+                  <Link href={item.href}>{item.label}</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
         {/* Actions */}
         <div className='flex items-center gap-2'>
