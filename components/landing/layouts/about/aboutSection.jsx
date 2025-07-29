@@ -202,7 +202,7 @@ export function AboutSection ({
       id={id}
       className={`min-h-screen bg-cover ${
         type === 'hero' ? 'pt-8 pb-15' : 'py-20'
-      } relative`}
+      } relative bg-center bg-no-repeat bg-fixed`}
       style={{
         backgroundImage: `url(${bgImage})`
       }}
@@ -210,15 +210,14 @@ export function AboutSection ({
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div
           className={cn(
-            `${
-              type === 'hero' &&
-              'grid grid-cols-1 lg:grid-cols-2 gap-12 h-[80vh]'
-            }`
+            type === 'hero'
+              ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:h-[80vh] h-auto'
+              : 'flex flex-col gap-12'
           )}
         >
           {imagePosition === 'left' && image}
           <motion.div
-            className='flex flex-col justify-center'
+            className='flex flex-col justify-center px-4'
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

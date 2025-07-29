@@ -3,9 +3,10 @@ import prisma from '@/lib/prisma'
 import React from 'react'
 
 export default async function PortofolioPage () {
-  // const hero = await prisma.hero.findFirst({
-  //   where: { isPublished: true }
-  // })
+  const portofolio = await prisma.portfolio.findMany({
+    where: { isPublished: true },
+    orderBy: { createdAt: 'desc' }
+  })
 
-  return <Portfolio />
+  return <Portfolio portofolio={portofolio} />
 }

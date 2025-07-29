@@ -4,30 +4,34 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useRandomBackground } from '@/hooks/useTheme'
 import { fadeInLeft, fadeInRight, staggerContainer } from '@/lib/constants'
-import { dataPortfolio } from '@/lib/helper'
+import { Button } from '@/components/ui/button'
 
-export function Portfolio () {
+export function Portfolio ({ portofolio: dataPortfolio }) {
   const bgImage = useRandomBackground()
 
   return (
     <motion.section
       id='portfolio-section'
-      className='py-24 bg-cover bg-center'
+      className='relative min-h-screen bg-cover bg-center bg-no-repeat bg-fixed py-20 sm:py-24 lg:py-32'
       variants={staggerContainer}
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <div className='w-full max-w-7xl px-6 mx-auto'>
+      {/* Optional: dark overlay for better text visibility */}
+      <div className='absolute inset-0 bg-black/40 dark:bg-black/60 z-0' />
+
+      {/* Content */}
+      <div className='relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <motion.h2
           variants={fadeInLeft}
-          className='text-4xl font-bold text-gray-900 dark:text-white mb-10 text-center md:text-left'
+          className='text-3xl sm:text-4xl font-bold text-white mb-10 text-center md:text-left'
         >
-          Professional Project Achievements
+          Professional Projects
         </motion.h2>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10'>
           {dataPortfolio?.map((item, index) => (
             <motion.div
               key={item.id || index}
@@ -35,31 +39,35 @@ export function Portfolio () {
               className='flex flex-col items-center gap-6 group'
             >
               {/* Image */}
-              <div className='w-full overflow-hidden rounded-3xl'>
+              <div className='w-full aspect-video overflow-hidden rounded-2xl'>
                 <Image
                   src={item.imageUrl}
                   alt={item.title}
+                  layout='responsive'
                   width={600}
                   height={400}
-                  className='rounded-3xl object-cover w-full h-auto transition-transform duration-300 group-hover:scale-105'
+                  className='rounded-2xl object-cover w-full h-auto transition-transform duration-500 ease-in-out group-hover:scale-105'
                 />
               </div>
 
               {/* Info */}
               <div className='flex items-center justify-between w-full'>
                 <div>
-                  <h4 className='text-2xl font-semibold text-gray-900 dark:text-white mb-1'>
+                  <h4 className='text-xl sm:text-2xl font-semibold text-white mb-1'>
                     {item.title}
                   </h4>
-                  <p className='text-lg text-gray-500 dark:text-gray-400'>
+                  <p className='text-sm sm:text-lg text-gray-300 dark:text-gray-400'>
                     {item.category}
                   </p>
                 </div>
 
                 {/* CTA Arrow */}
-                <button className='border border-black dark:border-white py-2 px-3.5 rounded-full group-hover:bg-black dark:group-hover:bg-white transition-all duration-300'>
+                <Button
+                  className='border border-white py-2 px-3.5 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300'
+                  onClick={() => window.open(item.projectUrl, '_blank')}
+                >
                   <svg
-                    className='stroke-black dark:stroke-white group-hover:stroke-white dark:group-hover:stroke-black transition-all duration-300'
+                    className='stroke-white group-hover:stroke-black transition-all duration-300'
                     xmlns='http://www.w3.org/2000/svg'
                     width='17'
                     height='16'
@@ -72,7 +80,7 @@ export function Portfolio () {
                       strokeLinecap='round'
                     />
                   </svg>
-                </button>
+                </Button>
               </div>
             </motion.div>
           ))}
