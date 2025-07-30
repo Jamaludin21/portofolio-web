@@ -15,7 +15,6 @@ export function AboutMe ({ hero, experience, education, skills }) {
       <AboutSection
         id='introduction'
         title='James Dev'
-        imageUrl='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/hero/20250406_080349_no_background-aKgZZvdK5IDeOKM9Y2kFCeac3eHFgm.png'
         imagePosition='left'
         items={hero}
         itemsSkill={skills}

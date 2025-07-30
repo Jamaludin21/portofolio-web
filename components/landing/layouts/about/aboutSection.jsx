@@ -10,11 +10,10 @@ import { GithubIcon, LinkedinIcon } from 'lucide-react'
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { useRandomBackground } from '@/hooks/useTheme'
+import { fadeInLeft, fadeInRight, staggerContainer } from '@/lib/constants'
 
 export function AboutSection ({
   id,
-  title,
-  imageUrl,
   imagePosition = 'left',
   items = [],
   itemsSkill = [],
@@ -177,41 +176,63 @@ export function AboutSection ({
     }
   }
 
-  const image = imageUrl && (
-    <motion.div
-      className='w-full max-lg:mb-8'
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className='relative w-full min-h-screen'>
-        <Image
-          src={imageUrl}
-          alt={title}
-          fill
-          priority
-          className='rounded-lg object-contain mx-auto'
-        />
-      </div>
-    </motion.div>
-  )
+  const image =
+    type === 'hero' ? (
+      <motion.div
+        className='w-full'
+        initial='hidden'
+        whileInView='visible'
+        variants={staggerContainer}
+        viewport={{ once: true }}
+      >
+        <div className='flex flex-col gap-6 w-full'>
+          <motion.div
+            variants={fadeInLeft}
+            className='relative w-full overflow-hidden rounded-xl shadow-md'
+          >
+            <Image
+              src='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/hero/Screenshot%202025-07-30%20125045-2GHbpPUKmF6YxSmXs9MrOTqtMb9u4m.png'
+              alt='Hero Screenshot 1'
+              layout='responsive'
+              width={300}
+              height={300}
+              priority
+            />
+          </motion.div>
+          <motion.div
+            variants={fadeInRight}
+            className='relative w-full overflow-hidden rounded-xl shadow-md'
+          >
+            <Image
+              src='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/hero/Screenshot%202025-07-30%20131801-GZgGhQ5p4p1N5S6LDxmwvLFxOPtzf0.png'
+              alt='Hero Screenshot 2'
+              layout='responsive'
+              width={300}
+              height={300}
+              priority
+            />
+          </motion.div>
+        </div>
+      </motion.div>
+    ) : null
 
   return (
     <section
       id={id}
       className={`min-h-screen bg-cover ${
-        type === 'hero' ? 'pt-8 pb-15' : 'py-20'
+        type === 'hero' ? 'pt-18 pb-15' : 'py-20'
       } relative bg-center bg-no-repeat bg-fixed`}
       style={{
         backgroundImage: `url(${bgImage})`
       }}
     >
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      {/* ✅ Dark overlay behind content */}
+      <div className='absolute inset-0 bg-black/40 dark:bg-black/60 z-0' />
+      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div
           className={cn(
             type === 'hero'
-              ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:h-[80vh] h-auto'
+              ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:h-[90vh] h-auto items-center'
               : 'flex flex-col gap-12'
           )}
         >
@@ -226,8 +247,10 @@ export function AboutSection ({
             {renderContent()}
           </motion.div>
           {imagePosition === 'right' && image}
-          {ScrollTo}
-          {ScrollBack}
+          <div className='hidden lg:block'>
+            {ScrollTo}
+            {ScrollBack}
+          </div>
         </div>
       </div>
     </section>

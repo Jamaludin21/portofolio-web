@@ -7,7 +7,6 @@ async function main() {
   // await prisma.experience.deleteMany();
   // await prisma.skill.deleteMany();
   // await prisma.education.deleteMany();
-  await prisma.portfolio.deleteMany();
 
   // await prisma.hero.create({
   //   data: {
@@ -94,44 +93,25 @@ async function main() {
   await prisma.portfolio.createMany({
     data: [
       {
-        title: "Aktiva Email Builder",
-        category: "Frontend",
+        title: "Lentera Asa",
+        category: "Fullstack",
         imageUrl:
-          "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/Screenshot%202025-07-29%20133407-08HqLm52S1w6RYHQXX6pvIkZIM3ZUD.png",
-        projectUrl: "https://builder.aktiva.co.id/templates",
+          "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/Screenshot%202025-07-30%20140201-1DMkP1K5pY0eN7WRXflyiupMG5UKpF.png",
+        projectUrl: "https://lentera-asa.vercel.app/",
         isPublished: true,
-        description:
-          "Email builder online gratis sebagai solusi untuk membantu anda mendesain email dengan drag & drop agar lebih baik dan menarik bagi customer anda, sehingga dapat meningkatkan kepercayaan dan lebih terlihat professional. Terdapat puluhan template email gratis dan siap pakai yang dapat digunakan untuk email newsletter, notifikasi ataupun promosi.",
+        // description:
+        //   "Email builder online gratis sebagai solusi untuk membantu anda mendesain email dengan drag & drop agar lebih baik dan menarik bagi customer anda, sehingga dapat meningkatkan kepercayaan dan lebih terlihat professional. Terdapat puluhan template email gratis dan siap pakai yang dapat digunakan untuk email newsletter, notifikasi ataupun promosi.",
       },
       {
-        title: "Aktiva Email Validator",
-        category: "Frontend",
+        title: "Apotek Warehouse",
+        category: "Fullstack",
         imageUrl:
-          "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/1714467514039-Jq67guHxT32U71IWXXtQoTXXGXMKHK.jpg",
-        projectUrl: "https://validate.aktiva.co.id/",
+          "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/Screenshot%202025-07-30%20140120-pVJnItFEFp3oTI8o0bw01EHiL5b0rs.png",
+        projectUrl: "https://apotek-warehouse.vercel.app/",
         isPublished: true,
-        description:
-          "Layanan email validator untuk memastikan alamat email yang ingin anda kirimkan valid dan dapat dituju untuk mengirimkan email. Pastikan daftar alamat email tujuan anda valid sebelum mengirimkan email dengan melakukan validasi. Tingkatkan rasio pengiriman email anda dan kurangi rasio bounce rate, agar reputasi email anda tetap terjaga.",
+        // description:
+        //   "Email builder online gratis sebagai solusi untuk membantu anda mendesain email dengan drag & drop agar lebih baik dan menarik bagi customer anda, sehingga dapat meningkatkan kepercayaan dan lebih terlihat professional. Terdapat puluhan template email gratis dan siap pakai yang dapat digunakan untuk email newsletter, notifikasi ataupun promosi.",
       },
-      {
-        title: "Aktiva Transaksional Email",
-        category: "Frontend",
-        imageUrl:
-          "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/hero_aktiva-layanan-transaksional-email-smtp-relay-email-api-1536x1061-OmyOfhHHNwmSCdqqmFtYtOMr83CxwE.png",
-        projectUrl: "https://apps.aktiva.co.id/",
-        isPublished: true,
-        description:
-          "Layanan outgoing email yang membantu pengiriman email melalui SMTP Relay dan API, seperti pengiriman notifikasi atau transaksi ke inbox penerima. Dapat mengurangi masalah pengiriman email seperti masuk spam, terblacklist atau penolakan. Dilengkapi dengan dashboard untuk monitoring dan tracking pengiriman email secara real-time.",
-      },
-      // {
-      //   title: "APPLICATION DEVELOPER",
-      //   category: "PT ASABA DIGITAL INNOTECH",
-      //   imageUrl: "Setia Budi, Jakarta Selatan, Indonesia",
-      //   projectUrl:
-      //     "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/company/1674698164758-1SgrNzj9raWRI6A7SVfzsiId84YozF.jpeg",
-      //   isPublished: new Date("2024-10-01"),
-      //   description: `· Write and maintain clean, efficient, and scalable code\n· Perform testing and debugging to ensure applications are reliable and perform optimally\n· Gather client requirements and work closely with teams to deliver solutions that meet business needs`,
-      // },
     ],
   });
 }
