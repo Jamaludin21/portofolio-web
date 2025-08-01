@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-
+import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
@@ -7,6 +7,18 @@ async function main() {
   // await prisma.experience.deleteMany();
   // await prisma.skill.deleteMany();
   // await prisma.education.deleteMany();
+
+  const hashedPassword = await bcrypt.hash("Rahasia123!", 10);
+
+  await prisma.user.create({
+    data: {
+      name: "Jamaludin Hakim Harsoyo",
+      username: "Jamaludin21",
+      email: "jamaludinhakim21@gmail.com",
+      phoneNumber: "081514299690",
+      password: hashedPassword,
+    },
+  });
 
   // await prisma.hero.create({
   //   data: {
@@ -90,30 +102,30 @@ async function main() {
   //   ],
   // });
 
-  await prisma.portfolio.createMany({
-    data: [
-      {
-        title: "Lentera Asa",
-        category: "Fullstack",
-        imageUrl:
-          "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/Screenshot%202025-07-30%20140201-1DMkP1K5pY0eN7WRXflyiupMG5UKpF.png",
-        projectUrl: "https://lentera-asa.vercel.app/",
-        isPublished: true,
-        // description:
-        //   "Email builder online gratis sebagai solusi untuk membantu anda mendesain email dengan drag & drop agar lebih baik dan menarik bagi customer anda, sehingga dapat meningkatkan kepercayaan dan lebih terlihat professional. Terdapat puluhan template email gratis dan siap pakai yang dapat digunakan untuk email newsletter, notifikasi ataupun promosi.",
-      },
-      {
-        title: "Apotek Warehouse",
-        category: "Fullstack",
-        imageUrl:
-          "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/Screenshot%202025-07-30%20140120-pVJnItFEFp3oTI8o0bw01EHiL5b0rs.png",
-        projectUrl: "https://apotek-warehouse.vercel.app/",
-        isPublished: true,
-        // description:
-        //   "Email builder online gratis sebagai solusi untuk membantu anda mendesain email dengan drag & drop agar lebih baik dan menarik bagi customer anda, sehingga dapat meningkatkan kepercayaan dan lebih terlihat professional. Terdapat puluhan template email gratis dan siap pakai yang dapat digunakan untuk email newsletter, notifikasi ataupun promosi.",
-      },
-    ],
-  });
+  // await prisma.portfolio.createMany({
+  //   data: [
+  //     {
+  //       title: "Lentera Asa",
+  //       category: "Fullstack",
+  //       imageUrl:
+  //         "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/Screenshot%202025-07-30%20140201-1DMkP1K5pY0eN7WRXflyiupMG5UKpF.png",
+  //       projectUrl: "https://lentera-asa.vercel.app/",
+  //       isPublished: true,
+  //       // description:
+  //       //   "Email builder online gratis sebagai solusi untuk membantu anda mendesain email dengan drag & drop agar lebih baik dan menarik bagi customer anda, sehingga dapat meningkatkan kepercayaan dan lebih terlihat professional. Terdapat puluhan template email gratis dan siap pakai yang dapat digunakan untuk email newsletter, notifikasi ataupun promosi.",
+  //     },
+  //     {
+  //       title: "Apotek Warehouse",
+  //       category: "Fullstack",
+  //       imageUrl:
+  //         "https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/portofolio/Screenshot%202025-07-30%20140120-pVJnItFEFp3oTI8o0bw01EHiL5b0rs.png",
+  //       projectUrl: "https://apotek-warehouse.vercel.app/",
+  //       isPublished: true,
+  //       // description:
+  //       //   "Email builder online gratis sebagai solusi untuk membantu anda mendesain email dengan drag & drop agar lebih baik dan menarik bagi customer anda, sehingga dapat meningkatkan kepercayaan dan lebih terlihat professional. Terdapat puluhan template email gratis dan siap pakai yang dapat digunakan untuk email newsletter, notifikasi ataupun promosi.",
+  //     },
+  //   ],
+  // });
 }
 
 main()

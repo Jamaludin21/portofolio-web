@@ -60,7 +60,7 @@ export function Portfolio ({ portofolio: dataPortfolio }) {
               <div className='flex items-center justify-between w-full'>
                 <div className='flex items-center justify-between w-full'>
                   <div>
-                    <h4 className='text-xl sm:text-2xl font-semibold text-white mb-1'>
+                    <h4 className='text-xl sm:text-2xl font-semibold text-white group-hover:text-indigo-500 mb-1'>
                       {item.title}
                     </h4>
                     <p className='text-sm sm:text-lg text-gray-300 dark:text-gray-400'>
@@ -71,39 +71,53 @@ export function Portfolio ({ portofolio: dataPortfolio }) {
                     {item.description && (
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <span className='cursor-pointer'>
+                          <button
+                            type='button'
+                            className='cursor-pointer focus:outline-none'
+                            aria-label='More info'
+                          >
                             <InfoIcon
                               size={18}
-                              className='text-white hover:text-blue-400 transition-colors'
+                              className='text-white hover:text-indigo-400 transition-colors'
                             />
-                          </span>
+                          </button>
                         </TooltipTrigger>
+
                         <TooltipContent className='bg-white text-black max-w-[80vw] sm:max-w-xs break-words whitespace-pre-wrap'>
                           {item.description}
                         </TooltipContent>
                       </Tooltip>
                     )}
                     {/* CTA Arrow */}
-                    <Button
-                      className='border border-white py-1 px-1 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300'
-                      size='small'
-                      onClick={() => window.open(item.projectUrl, '_blank')}
-                    >
-                      <svg
-                        className='stroke-white group-hover:stroke-black transition-all duration-300'
-                        xmlns='http://www.w3.org/2000/svg'
-                        width='17'
-                        height='16'
-                        viewBox='0 0 17 16'
-                        fill='none'
-                      >
-                        <path
-                          d='M9.62553 4L13.6664 8.0409M13.6664 8.0409L9.62553 12.0818M13.6664 8.0409L1.6665 8.0409'
-                          strokeWidth='1.6'
-                          strokeLinecap='round'
-                        />
-                      </svg>
-                    </Button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          type='button'
+                          aria-label='Open project link'
+                          className='borde py-1 px-1 rounded-full bg-white/30 hover:bg-white/60 stroke-white hover:stroke-indigo-500 transition-all duration-300'
+                          size='small'
+                          onClick={() => window.open(item.projectUrl, '_blank')}
+                        >
+                          <svg
+                            className='transition-all duration-300'
+                            xmlns='http://www.w3.org/2000/svg'
+                            width='17'
+                            height='16'
+                            viewBox='0 0 17 16'
+                            fill='none'
+                          >
+                            <path
+                              d='M9.62553 4L13.6664 8.0409M13.6664 8.0409L9.62553 12.0818M13.6664 8.0409L1.6665 8.0409'
+                              strokeWidth='1.6'
+                              strokeLinecap='round'
+                            />
+                          </svg>
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent className='bg-white text-black text-xs font-medium'>
+                        Open project link
+                      </TooltipContent>
+                    </Tooltip>
                   </div>
                 </div>
               </div>

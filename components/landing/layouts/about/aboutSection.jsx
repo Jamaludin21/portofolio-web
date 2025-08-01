@@ -54,12 +54,9 @@ export function AboutSection ({
                 <Button
                   size='small'
                   variant='outline'
-                  className='p-2 cursor-pointer'
+                  className='p-2 cursor-pointer hover:bg-white hover:text-indigo-500'
                 >
-                  <GithubIcon
-                    size={28}
-                    className='text-gray-600 hover:text-blue-600'
-                  />
+                  <GithubIcon size={28} />
                   <p>Github</p>
                 </Button>
               </a>
@@ -72,12 +69,9 @@ export function AboutSection ({
                 <Button
                   size='small'
                   variant='outline'
-                  className='p-2 cursor-pointer'
+                  className='p-2 cursor-pointer hover:bg-white hover:text-indigo-500'
                 >
-                  <LinkedinIcon
-                    size={28}
-                    className='text-gray-600 hover:text-blue-600'
-                  />
+                  <LinkedinIcon size={28} />
                   <p>LinkedIn</p>
                 </Button>
               </a>

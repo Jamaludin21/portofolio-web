@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { ThemeToggle } from '@/components/landing/toggle/theme-toggle'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import {
   NavigationMenu,
   NavigationMenuList,

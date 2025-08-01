@@ -7,56 +7,63 @@ import Link from 'next/link'
 
 export function MainComp ({ dataMain }) {
   const bgImage = useRandomBackground()
+
   return (
     <section
       id='home-section'
-      className='min-h-screen bg-center bg-cover'
+      className='relative min-h-screen bg-cover bg-center bg-no-repeat'
       style={{
         backgroundImage: `url(${bgImage})`
       }}
     >
-      <div className='absolute inset-0 bg-black/40 dark:bg-black/60 z-0'>
-        <div className='h-screen z-10 mx-auto max-w-6xl px-4 flex flex-col justify-center items-center text-center'>
-          {/* Introduction */}
-          <motion.p
-            className='text-sm font-medium text-indigo-600 mb-3'
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            Hi, I’m {dataMain?.name}
-          </motion.p>
+      {/* Dark Overlay */}
+      <div className='absolute inset-0 bg-black/40 dark:bg-black/60 z-0' />
 
-          {/* Headline */}
-          <motion.h1
-            className='max-w-2xl text-4xl md:text-5xl font-bold dark:text-white leading-tight mb-6'
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {dataMain?.role}
-          </motion.h1>
+      {/* Content Wrapper */}
+      <div className='relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-24 min-h-screen max-w-6xl mx-auto'>
+        {/* Greeting */}
+        <motion.p
+          className='text-sm sm:text-base font-medium text-indigo-500 mb-4'
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          Hi, I’m {dataMain?.name}
+        </motion.p>
 
-          {/* Summary */}
-          <motion.p
-            className='max-w-xl text-base text-gray-600 dark:text-gray-300 mb-10'
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            viewport={{ once: true }}
-          >
-            {dataMain?.summary}
-          </motion.p>
+        {/* Role / Headline */}
+        <motion.h1
+          className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight text-balance'
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          {dataMain?.role}
+        </motion.h1>
 
-          {/* CTA */}
-          <Link href='/about'>
-            <Button variant='outline' size='lg' className='cursor-pointer'>
-              Wanna know more about me?
-            </Button>
-          </Link>
-        </div>
+        {/* Summary */}
+        <motion.p
+          className='max-w-2xl text-sm sm:text-base text-gray-300 mb-10 leading-relaxed text-balance'
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+          viewport={{ once: true }}
+        >
+          {dataMain?.summary}
+        </motion.p>
+
+        {/* Call to Action */}
+        <Link href='/about'>
+          <Button
+            variant='outline'
+            size='lg'
+            className='text-black dark:text-white hover:bg-white hover:text-indigo-500 dark:hover:text-indigo-500 transition cursor-pointer'
+          >
+            Wanna know more about me?
+          </Button>
+        </Link>
       </div>
     </section>
   )
