@@ -18,8 +18,8 @@ import React, { useState } from 'react'
 const navItems = [
   { label: 'Home', href: '/home' },
   { label: 'About me', href: '/about' },
-  { label: 'Portfolio', href: '/portofolio' }
-  // { label: 'Contact', href: '/contact' }
+  { label: 'Portfolio', href: '/portofolio' },
+  { label: 'Contact', href: '/contact' }
 ]
 
 export function NavbarLanding () {

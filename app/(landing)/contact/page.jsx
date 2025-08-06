@@ -3,9 +3,7 @@ import prisma from '@/lib/prisma'
 import React from 'react'
 
 export default async function LandingPage () {
-  // const hero = await prisma.hero.findFirst({
-  //   where: { isPublished: true }
-  // })
+  const user = await prisma.user.findFirst()
 
-  return <ContactMe />
+  return <ContactMe userData={user} />
 }
