@@ -49,7 +49,9 @@ export function LoginForm ({ className, ...props }) {
         setAlertMessage(res.error)
         toast.error(res.error, { id: toastId })
       } else {
-        toast.success('Login successful!', { id: toastId })
+        toast.success('Login successful! Redirect into panel management', {
+          id: toastId
+        })
       }
     } catch (error) {
       toast.error('Something went wrong.', { id: toastId })

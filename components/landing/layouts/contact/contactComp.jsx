@@ -27,8 +27,8 @@ export function ContactMe ({ userData }) {
   useDocumentTitle('Contact Me')
 
   const [loading, setLoading] = useState(false)
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
+  const formRef = useRef(null)
+  const isInView = useInView(formRef, { once: true, margin: '-100px' })
   const bgImage = useRandomBackground()
   const { phoneNumber, email } = userData
 
@@ -88,24 +88,21 @@ export function ContactMe ({ userData }) {
 
   return (
     <motion.section
-      id='contact-section'
-      ref={sectionRef}
-      variants={staggerContainer}
-      initial='hidden'
-      animate={isInView ? 'visible' : 'hidden'}
       className='relative min-h-screen grid place-items-center w-full overflow-hidden bg-cover bg-center bg-no-repeat pt-16 px-4 sm:px-6 lg:px-8'
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
       {/* Dark Overlay */}
       <div className='absolute inset-0 bg-black/40 dark:bg-black/60 z-0' />
 
-      <div className='relative mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-0 max-w-6xl grid grid-cols-1 sm:grid-cols-2 justify-center z-10'>
+      <div className='relative mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-0 flex flex-col sm:grid sm:grid-cols-2 gap-12 sm:gap-0 z-10'>
         {/* Left - Contact Details with Image */}
         <motion.div
           variants={fadeInLeft}
-          className='order-1 lg:order-none w-full h-full min-h-[500px] flex'
+          initial='hidden'
+          animate='visible'
+          className='w-full h-full min-h-[500px] flex flex-col justify-between'
         >
-          <div className='relative w-full h-full rounded-2xl overflow-hidden flex-1'>
+          <div className='relative w-full min-h-[85vh] sm:min-h-full h-full rounded-2xl overflow-hidden flex-1'>
             <Image
               src='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/hero/supawork-photo-20250730T045550996Z-QsPvjejsOE6dadyRmikqGO2qhzUBMs.png'
               alt='Contact illustration AI'
@@ -144,8 +141,11 @@ export function ContactMe ({ userData }) {
 
         {/* Right - Contact Form */}
         <motion.div
+          ref={formRef}
           variants={fadeInRight}
-          className='order-2 w-full h-full min-h-[500px] bg-white dark:bg-gray-800 p-6 sm:p-8 lg:p-11 rounded-2xl shadow-md flex flex-col justify-between'
+          initial='hidden'
+          animate={isInView ? 'visible' : 'hidden'}
+          className='w-full h-full min-h-[85vh] sm:min-h-full bg-white dark:bg-gray-800 p-6 sm:p-8 lg:p-11 rounded-2xl shadow-md flex flex-col justify-between'
         >
           <h2 className='text-indigo-600 text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8'>
             Send Me A Message
@@ -253,7 +253,7 @@ export function ContactMe ({ userData }) {
                 type='submit'
                 variant='outline'
                 disabled={loading || !form.formState.isValid}
-                className='w-full h-12 rounded-full bg-white hover:bg-indigo-700 text-indigo-700 hover:text-white font-semibold transition-colors duration-300 cursor-pointer'
+                className='w-full h-12 rounded-full bg-white hover:bg-indigo-700 text-indigo-700 dark:text-indigo-400 hover:text-white dark:hover:text-white font-semibold transition-colors duration-300 cursor-pointer'
               >
                 {loading ? 'Sending...' : 'Submit'}
               </Button>

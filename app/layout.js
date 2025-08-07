@@ -2,6 +2,7 @@ import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "@/components/ui/sonner";
+import { TrafficLogger } from "@/hooks/useTrafficLogger";
 
 export const metadata = {
   title:
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         {children}
+        <TrafficLogger />
         <SpeedInsights />
         <Analytics />
         <Toaster />

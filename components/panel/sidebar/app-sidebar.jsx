@@ -1,14 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import {
-  IconChartBar,
-  IconDashboard,
-  IconFolder,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconUsers
-} from '@tabler/icons-react'
+import { IconDashboard, IconDevicesCode } from '@tabler/icons-react'
 import { NavMain } from '@/components/panel/sidebar/nav-main'
 import { NavUser } from '@/components/panel/sidebar/nav-user'
 import {
@@ -20,43 +13,25 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from '@/components/ui/sidebar'
-
-const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg'
-  },
-  navMain: [
-    {
-      title: 'Dashboard',
-      url: '#',
-      icon: IconDashboard
-    },
-    {
-      title: 'Lifecycle',
-      url: '#',
-      icon: IconListDetails
-    },
-    {
-      title: 'Analytics',
-      url: '#',
-      icon: IconChartBar
-    },
-    {
-      title: 'Projects',
-      url: '#',
-      icon: IconFolder
-    },
-    {
-      title: 'Team',
-      url: '#',
-      icon: IconUsers
-    }
-  ]
-}
+import { useAppContext } from '@/hooks/useAppContext'
 
 export function AppSidebar ({ ...props }) {
+  const { session } = useAppContext()
+
+  const userData = {
+    name: session?.full_name ?? 'James Dev',
+    email: session?.email ?? 'jamesdev@gmail.com',
+    avatar: `https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/hero/supawork-photo-20250730T045550996Z-QsPvjejsOE6dadyRmikqGO2qhzUBMs.png`
+  }
+
+  const navMain = [
+    {
+      title: 'Dashboard',
+      url: '/dashboard',
+      icon: IconDashboard
+    }
+  ]
+
   return (
     <Sidebar collapsible='offcanvas' {...props}>
       <SidebarHeader>
@@ -66,19 +41,19 @@ export function AppSidebar ({ ...props }) {
               asChild
               className='data-[slot=sidebar-menu-button]:!p-1.5'
             >
-              <a href='#'>
-                <IconInnerShadowTop className='!size-5' />
-                <span className='text-base font-semibold'>Acme Inc.</span>
+              <a href='/dashboard'>
+                <IconDevicesCode className='!size-5' />
+                <span className='text-base font-semibold'>James Dev</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userData} />
       </SidebarFooter>
     </Sidebar>
   )

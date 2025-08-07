@@ -3,25 +3,28 @@ import { SiteHeader } from '@/components/panel/navbar/site-header'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { getSession } from '@/lib/session'
 import { AppSidebar } from '@/components/panel/sidebar/app-sidebar'
+import { AppProvider } from '@/hooks/useAppContext'
 
 export default async function PanelLayout ({ children }) {
   const session = await getSession()
+  const propsGlobalValue = { session }
 
-  console.log(session)
   return (
-    <Providers>
-      <SidebarProvider
-        style={{
-          '--sidebar-width': 'calc(var(--spacing) * 72)',
-          '--header-height': 'calc(var(--spacing) * 12)'
-        }}
-      >
-        <AppSidebar variant='inset' />
-        <SidebarInset>
-          <SiteHeader />
-          {children}
-        </SidebarInset>
-      </SidebarProvider>
-    </Providers>
+    <AppProvider value={propsGlobalValue}>
+      <Providers>
+        <SidebarProvider
+          style={{
+            '--sidebar-width': 'calc(var(--spacing) * 72)',
+            '--header-height': 'calc(var(--spacing) * 12)'
+          }}
+        >
+          <AppSidebar variant='inset' />
+          <SidebarInset>
+            <SiteHeader />
+            {children}
+          </SidebarInset>
+        </SidebarProvider>
+      </Providers>
+    </AppProvider>
   )
 }
