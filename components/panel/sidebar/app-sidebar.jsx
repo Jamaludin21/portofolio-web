@@ -1,7 +1,12 @@
 'use client'
 
 import * as React from 'react'
-import { IconDashboard, IconDevicesCode } from '@tabler/icons-react'
+import {
+  IconBodyScan,
+  IconDashboard,
+  IconDeviceProjector,
+  IconDevicesCode
+} from '@tabler/icons-react'
 import { NavMain } from '@/components/panel/sidebar/nav-main'
 import { NavUser } from '@/components/panel/sidebar/nav-user'
 import {
@@ -29,6 +34,16 @@ export function AppSidebar ({ ...props }) {
       title: 'Dashboard',
       url: '/dashboard',
       icon: IconDashboard
+    },
+    {
+      title: 'My Biodata',
+      url: '/biodata',
+      icon: IconBodyScan
+    },
+    {
+      title: 'My Portofolio',
+      url: '/project',
+      icon: IconDeviceProjector
     }
   ]
 

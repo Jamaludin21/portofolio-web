@@ -1,10 +1,12 @@
+'use client'
+
 import * as React from 'react'
 import { ChartAreaInteractive } from '@/components/panel/layouts/dashboard/chart-area-interactive'
-import { DataTable } from '@/components/panel/layouts/dashboard/data-table'
 import { SectionCards } from '@/components/panel/layouts/dashboard/section-cards'
-import { dataDashboard } from '@/lib/helper'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 export function DashboardContent ({ session, counts, chartData }) {
+  useDocumentTitle('Main Dashboard')
   return (
     <div className='flex flex-1 flex-col'>
       <div className='@container/main flex flex-1 flex-col gap-2'>
@@ -13,7 +15,6 @@ export function DashboardContent ({ session, counts, chartData }) {
           <div className='px-4 lg:px-6'>
             <ChartAreaInteractive chartData={chartData} />
           </div>
-          {/* <DataTable data={dataDashboard} /> */}
         </div>
       </div>
     </div>
