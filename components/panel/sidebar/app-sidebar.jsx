@@ -39,12 +39,12 @@ export function AppSidebar ({ ...props }) {
       title: 'My Biodata',
       url: '/biodata',
       icon: IconBodyScan
-    },
-    {
-      title: 'My Portofolio',
-      url: '/project',
-      icon: IconDeviceProjector
     }
+    // {
+    //   title: 'My Portofolio',
+    //   url: '/project',
+    //   icon: IconDeviceProjector
+    // }
   ]
 
   return (

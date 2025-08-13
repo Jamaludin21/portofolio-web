@@ -2,10 +2,16 @@
 
 import React from 'react'
 import Image from 'next/image'
+import dayjs from 'dayjs'
 import { DragHandle } from '@/components/panel/table/dragHandle'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent
+} from '@/components/ui/tooltip'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -14,18 +20,9 @@ import {
   DropdownMenuSeparator
 } from '@/components/ui/dropdown-menu'
 import { IconDotsVertical, IconExternalLink } from '@tabler/icons-react'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
-import dayjs from 'dayjs'
+import { ArchiveIcon, CheckIcon } from 'lucide-react'
 
-// Helper for date rendering
+/** ---------- cell render helpers ---------- */
 function renderDate (value) {
   if (!value) return <span className='text-muted-foreground'>-</span>
   return (
@@ -35,7 +32,6 @@ function renderDate (value) {
   )
 }
 
-// Helper for image rendering
 function renderImage (url, alt = 'Image') {
   if (!url)
     return (
@@ -53,18 +49,34 @@ function renderImage (url, alt = 'Image') {
   )
 }
 
-// Helper for boolean
 function renderBoolean (val) {
   return (
     <Badge
       variant={val ? 'success' : 'destructive'}
       className='capitalize px-2'
     >
-      {val ? 'Yes' : 'No'}
+      {val ? <CheckIcon /> : <ArchiveIcon />}
     </Badge>
   )
 }
 
+/** ---------- small util to ensure id/header/accessorKey exist ---------- */
+function base (col) {
+  const accessorKey = col.dataIndex ?? col.accessorKey
+  const id =
+    col.id ?? accessorKey ?? `col_${Math.random().toString(36).slice(2, 8)}`
+  return {
+    id,
+    accessorKey,
+    header: <div className='text-center'>{col.title ?? col.header}</div>, // <-- IMPORTANT: TanStack uses `header`
+    ...col.extraProps
+  }
+}
+
+/**
+ * Build TanStack columns from your config safely (JS)
+ * Ensures every column has header/id/accessorKey when needed
+ */
 export function createColumns ({
   columnsConfig = [],
   onEdit,
@@ -73,19 +85,21 @@ export function createColumns ({
   customComponents = {}
 }) {
   return columnsConfig.map(col => {
-    // --- Special columns ---
+    /** ---- special columns (no accessor) ---- */
     if (col.type === 'drag') {
       return {
-        id: 'drag',
+        id: col.id ?? 'drag',
         header: () => null,
         cell: ({ row }) => <DragHandle id={row.original.id} />,
+        enableSorting: false,
+        enableHiding: false,
         ...col.extraProps
       }
     }
 
     if (col.type === 'select') {
       return {
-        id: 'select',
+        id: col.id ?? 'select',
         header: ({ table }) => (
           <div className='flex items-center justify-center'>
             <Checkbox
@@ -93,9 +107,7 @@ export function createColumns ({
                 table.getIsAllPageRowsSelected() ||
                 (table.getIsSomePageRowsSelected() && 'indeterminate')
               }
-              onCheckedChange={value =>
-                table.toggleAllPageRowsSelected(!!value)
-              }
+              onCheckedChange={v => table.toggleAllPageRowsSelected(!!v)}
               aria-label='Select all'
             />
           </div>
@@ -104,7 +116,7 @@ export function createColumns ({
           <div className='flex items-center justify-center'>
             <Checkbox
               checked={row.getIsSelected()}
-              onCheckedChange={value => row.toggleSelected(!!value)}
+              onCheckedChange={v => row.toggleSelected(!!v)}
               aria-label='Select row'
             />
           </div>
@@ -117,8 +129,8 @@ export function createColumns ({
 
     if (col.type === 'actions') {
       return {
-        id: 'actions',
-        header: col.header || null,
+        id: col.id ?? 'actions',
+        header: col.title ?? col.header ?? null,
         cell: ({ row }) => (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -131,8 +143,6 @@ export function createColumns ({
               <DropdownMenuItem onClick={() => onEdit && onEdit(row.original)}>
                 Edit
               </DropdownMenuItem>
-              <DropdownMenuItem>Make a copy</DropdownMenuItem>
-              <DropdownMenuItem>Favorite</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 variant='destructive'
@@ -147,10 +157,11 @@ export function createColumns ({
       }
     }
 
-    // --- Custom render handler (for full override) ---
+    /** ---- full custom renderer override ---- */
     if (col.render) {
+      const b = base(col)
       return {
-        ...col,
+        ...b,
         cell: ({ row, cell }) =>
           col.render(row.original, cell, {
             data,
@@ -161,43 +172,42 @@ export function createColumns ({
       }
     }
 
-    // --- Prisma/Postgres common types ---
-    // DateTime
+    /** ---- typed/default renderers (these NEED header + accessorKey) ---- */
     if (col.type === 'date' || col.type === 'datetime') {
+      const b = base(col)
       return {
-        ...col,
-        cell: ({ row }) =>
-          renderDate(row.original[col.dataIndex || col.accessorKey])
+        ...b,
+        cell: ({ row }) => renderDate(row.original[b.accessorKey])
       }
     }
 
-    // Boolean
     if (col.type === 'boolean') {
+      const b = base(col)
       return {
-        ...col,
-        cell: ({ row }) =>
-          renderBoolean(row.original[col.dataIndex || col.accessorKey])
+        ...b,
+        cell: ({ row }) => (
+          <div className='text-center'>
+            {renderBoolean(row.original[b.accessorKey])}
+          </div>
+        )
       }
     }
 
-    // Image/Avatar (e.g. Hero, Experience, Education, Portfolio)
     if (col.type === 'image' || col.type === 'avatar') {
+      const b = base(col)
       return {
-        ...col,
+        ...b,
         cell: ({ row }) =>
-          renderImage(
-            row.original[col.dataIndex || col.accessorKey],
-            col.title || col.header
-          )
+          renderImage(row.original[b.accessorKey], col.title ?? col.header)
       }
     }
 
-    // URL (open in new tab)
     if (col.type === 'url') {
+      const b = base(col)
       return {
-        ...col,
+        ...b,
         cell: ({ row }) => {
-          const url = row.original[col.dataIndex || col.accessorKey]
+          const url = row.original[b.accessorKey]
           return url ? (
             <a
               href={url}
@@ -215,50 +225,75 @@ export function createColumns ({
       }
     }
 
-    // Enum/Badge fields (level, category, role, device)
+    // enums/badges (explicit type or common field names)
     if (
       col.type === 'badge' ||
       ['level', 'category', 'role', 'device'].includes(
-        col.dataIndex || col.accessorKey
+        col.dataIndex ?? col.accessorKey
       )
     ) {
+      const b = base(col)
       return {
-        ...col,
+        ...b,
         cell: ({ row }) => (
           <Badge variant='outline' className='capitalize'>
-            {row.original[col.dataIndex || col.accessorKey]}
+            {row.original[b.accessorKey]}
           </Badge>
         )
       }
     }
 
-    // Multi-line description/rich text preview
+    // description-ish previews
     if (
       col.type === 'description' ||
       ['summary', 'content', 'description'].includes(
-        col.dataIndex || col.accessorKey
+        col.dataIndex ?? col.accessorKey
       )
     ) {
+      const b = base(col)
       return {
-        ...col,
-        cell: ({ row }) => (
-          <div className='max-w-xs line-clamp-2 text-xs text-muted-foreground'>
-            {row.original[col.dataIndex || col.accessorKey]}
-          </div>
-        )
+        ...b,
+        cell: ({ row }) => {
+          const text = row.original[b.accessorKey]
+          if (!text) return <span className='text-muted-foreground'>-</span>
+
+          // default widths; override per-column via config if you want
+          const truncatedClass =
+            col.ellipsisClassName ??
+            'max-w-xs line-clamp-2 truncate overflow-hidden text-xs text-muted-foreground cursor-pointer'
+          const tooltipClass =
+            col.tooltipClassName ??
+            'max-w-[60ch] whitespace-pre-wrap break-words'
+
+          return (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div
+                  tabIndex={0}
+                  role='button'
+                  className={truncatedClass}
+                  onClick={e => e.currentTarget.focus()}
+                  onTouchEnd={e => {
+                    // prevent ghost click then focus
+                    e.preventDefault()
+                    e.currentTarget.focus()
+                  }}
+                >
+                  {text}
+                </div>
+              </TooltipTrigger>
+              <TooltipContent className={tooltipClass}>{text}</TooltipContent>
+            </Tooltip>
+          )
+        }
       }
     }
 
-    // Default string/text field
+    /** ---- default text column ---- */
+    const b = base(col)
     return {
-      ...col,
-      id: col.id || col.dataIndex || col.accessorKey || makeUniqueId(),
-      accessorKey: col.dataIndex || col.accessorKey,
-      header: col.title || col.header,
-      cell: col.cell
-        ? col.cell
-        : ({ row }) => row.original[col.dataIndex || col.accessorKey],
-      ...col.extraProps
+      ...b,
+      cell: col.cell ? col.cell : ({ row }) => row.original[b.accessorKey]
     }
   })
 }
