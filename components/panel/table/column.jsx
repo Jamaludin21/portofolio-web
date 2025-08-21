@@ -3,7 +3,6 @@
 import React from 'react'
 import Image from 'next/image'
 import dayjs from 'dayjs'
-import { DragHandle } from '@/components/panel/table/dragHandle'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -86,16 +85,6 @@ export function createColumns ({
 }) {
   return columnsConfig.map(col => {
     /** ---- special columns (no accessor) ---- */
-    if (col.type === 'drag') {
-      return {
-        id: col.id ?? 'drag',
-        header: () => null,
-        cell: ({ row }) => <DragHandle id={row.original.id} />,
-        enableSorting: false,
-        enableHiding: false,
-        ...col.extraProps
-      }
-    }
 
     if (col.type === 'select') {
       return {
