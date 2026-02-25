@@ -49,10 +49,11 @@ export function Portfolio ({ portofolio: dataPortfolio }) {
                 <Image
                   src={item.imageUrl}
                   alt={item.title}
-                  layout='responsive'
+                  sizes='(max-width: 768px) 100vw, 50vw'
                   width={600}
                   height={400}
                   className='rounded-2xl object-cover w-full h-auto transition-transform duration-500 ease-in-out group-hover:scale-105'
+                  priority
                 />
               </div>
 

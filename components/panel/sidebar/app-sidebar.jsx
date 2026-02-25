@@ -1,12 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import {
-  IconBodyScan,
-  IconDashboard,
-  IconDeviceProjector,
-  IconDevicesCode
-} from '@tabler/icons-react'
+import { IconBodyScan, IconDashboard } from '@tabler/icons-react'
 import { NavMain } from '@/components/panel/sidebar/nav-main'
 import { NavUser } from '@/components/panel/sidebar/nav-user'
 import {
@@ -19,6 +14,7 @@ import {
   SidebarMenuItem
 } from '@/components/ui/sidebar'
 import { useAppContext } from '@/hooks/useAppContext'
+import Image from 'next/image'
 
 export function AppSidebar ({ ...props }) {
   const { session } = useAppContext()
@@ -57,7 +53,14 @@ export function AppSidebar ({ ...props }) {
               className='data-[slot=sidebar-menu-button]:!p-1.5'
             >
               <a href='/dashboard'>
-                <IconDevicesCode className='!size-5' />
+                <Image
+                  src='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/assets/jd_logo_1024-55NCd59VtjrIiVx4yHYL4Qa3gCdoak.jpg'
+                  alt='James Dev Logo'
+                  width={36}
+                  height={36}
+                  className='rounded-full object-cover shadow-sm border border-border'
+                  priority
+                />
                 <span className='text-base font-semibold'>James Dev</span>
               </a>
             </SidebarMenuButton>

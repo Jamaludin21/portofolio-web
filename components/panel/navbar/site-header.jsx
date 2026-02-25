@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import React from 'react'
-import { ThemeToggle } from '@/components/ui/theme-toggle'
+// import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { useCurrentPath } from '@/hooks/useCurrentPath'
 import { toCamelText } from '@/lib/helper'
-import { Github, Linkedin } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '@/lib/constants'
 
 export function SiteHeader () {
   const { currentSegment } = useCurrentPath()
@@ -47,7 +47,7 @@ export function SiteHeader () {
               target='_blank'
               aria-label='GitHub'
             >
-              <Github className='h-5 w-5' />
+              <GithubIcon className='h-5 w-5' />
             </a>
           </Button>
 
@@ -74,11 +74,11 @@ export function SiteHeader () {
               target='_blank'
               aria-label='LinkedIn'
             >
-              <Linkedin className='h-5 w-5' />
+              <LinkedinIcon className='h-5 w-5' />
             </a>
           </Button>
 
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </div>
       </div>
     </header>

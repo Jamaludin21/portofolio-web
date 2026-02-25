@@ -187,7 +187,8 @@ export function AboutSection ({
             <Image
               src='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/hero/Screenshot%202025-07-30%20125045-2GHbpPUKmF6YxSmXs9MrOTqtMb9u4m.png'
               alt='Hero Screenshot 1'
-              layout='responsive'
+              className='w-full h-auto object-cover'
+              sizes='(max-width: 768px) 100vw, 50vw'
               width={300}
               height={300}
               priority
@@ -200,7 +201,8 @@ export function AboutSection ({
             <Image
               src='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/hero/Screenshot%202025-07-30%20131801-GZgGhQ5p4p1N5S6LDxmwvLFxOPtzf0.png'
               alt='Hero Screenshot 2'
-              layout='responsive'
+              className='w-full h-auto object-cover'
+              sizes='(max-width: 768px) 100vw, 50vw'
               width={300}
               height={300}
               priority

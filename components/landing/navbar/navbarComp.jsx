@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { ThemeToggle } from '@/components/ui/theme-toggle'
+// import { ThemeToggle } from '@/components/ui/theme-toggle'
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/navigation-menu'
 import { Menu, X } from 'lucide-react'
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 const navItems = [
   { label: 'Home', href: '/home' },
@@ -38,8 +39,19 @@ export function NavbarLanding () {
       >
         <div className='flex h-16 items-center justify-between max-w-7xl mx-auto'>
           {/* Logo */}
-          <Link href='/home' className='text-lg font-bold'>
-            James Dev
+          <Link
+            href='/home'
+            className='flex items-center gap-2.5 hover:opacity-80 transition-opacity'
+          >
+            <Image
+              src='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/assets/jd_logo_1024-55NCd59VtjrIiVx4yHYL4Qa3gCdoak.jpg'
+              alt='James Dev Logo'
+              width={36}
+              height={36}
+              className='rounded-full object-cover shadow-sm border border-border'
+              priority
+            />
+            <span className='text-lg font-bold'>James Dev</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -73,7 +85,7 @@ export function NavbarLanding () {
                 </Button>
               </Link>
             </div>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             {/* Mobile menu toggle */}
             <Button
               className='md:hidden p-2'

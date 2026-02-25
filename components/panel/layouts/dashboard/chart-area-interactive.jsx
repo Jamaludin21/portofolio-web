@@ -1,5 +1,3 @@
-// ChartAreaInteractive.jsx or .tsx
-
 'use client'
 
 import * as React from 'react'

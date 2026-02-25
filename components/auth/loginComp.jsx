@@ -20,7 +20,7 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { useAuth } from '@/hooks/useAuth'
-import { ThemeToggle } from '@/components/ui/theme-toggle'
+// import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { toast } from 'sonner'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
@@ -72,9 +72,9 @@ export function LoginForm ({ className, ...props }) {
     >
       <Card className='overflow-hidden p-0'>
         <CardContent className='grid relative p-0 md:grid-cols-2'>
-          <div className='absolute right-4 top-4 z-10 md:hidden'>
+          {/* <div className='absolute right-4 top-4 z-10 md:hidden'>
             <ThemeToggle loginPage={true} />
-          </div>
+          </div> */}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='p-6 md:p-8'>
               <div className='flex flex-col gap-6'>
@@ -175,9 +175,9 @@ export function LoginForm ({ className, ...props }) {
           </Form>
 
           <div className='bg-muted relative hidden md:block'>
-            <div className='absolute right-4 top-4 z-10'>
+            {/* <div className='absolute right-4 top-4 z-10'>
               <ThemeToggle loginPage={true} />
-            </div>
+            </div> */}
             <Image
               src='https://ohl6h4pfccuxujvz.public.blob.vercel-storage.com/assets/tree-8175062_1280-4EsCdIQovDFE4pBueAoX0WihX5Ppzl.jpg'
               alt='Login page'
