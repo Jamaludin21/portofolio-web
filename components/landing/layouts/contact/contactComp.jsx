@@ -91,8 +91,8 @@ export function ContactMe ({ userData }) {
       className='relative min-h-screen grid place-items-center w-full overflow-hidden bg-cover bg-center bg-no-repeat pt-16 px-4 sm:px-6 lg:px-8'
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
-      {/* Dark Overlay */}
-      <div className='absolute inset-0 bg-black/40 dark:bg-black/60 z-0' />
+      {/* Dark Overlay Theme Adaptable */}
+      <div className='absolute inset-0 bg-background/80 dark:bg-background/90 backdrop-blur-[2px] z-0' />
 
       <div className='relative mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-0 flex flex-col sm:grid sm:grid-cols-2 gap-12 sm:gap-0 z-10'>
         {/* Left - Contact Details with Image */}
@@ -110,27 +110,27 @@ export function ContactMe ({ userData }) {
               fill
               priority
             />
-            <div className='absolute inset-0 bg-indigo-700/50 z-10'></div>
-            <h2 className='absolute top-6 left-6 sm:top-10 sm:left-10 text-white text-3xl sm:text-4xl font-bold z-20'>
+            <div className='absolute inset-0 bg-indigo-900/40 z-10'></div>
+            <h2 className='absolute top-6 left-6 sm:top-10 sm:left-10 text-white text-3xl sm:text-4xl font-extrabold tracking-tight z-20'>
               Contact Me
             </h2>
-            <div className='absolute bottom-0 w-full p-4 z-20'>
-              <div className='bg-white dark:bg-gray-800 rounded-lg p-2 md:p-4 space-y-2'>
+            <div className='absolute bottom-0 w-full p-4 sm:p-6 z-20'>
+              <div className='bg-background/95 backdrop-blur-md rounded-xl p-4 md:p-5 space-y-3 border border-border shadow-md'>
                 <div className='flex items-center flex-wrap gap-3 sm:gap-4'>
-                  <FaWhatsapp className='text-green-600 text-xs' />
-                  <p className='text-gray-700 dark:text-gray-200 text-sm sm:text-base'>
+                  <FaWhatsapp className='text-green-500 text-lg' />
+                  <p className='text-foreground font-medium text-sm sm:text-base'>
                     {phoneNumber}
                   </p>
                 </div>
                 <div className='flex items-center flex-wrap gap-3 sm:gap-4'>
-                  <FaEnvelope className='text-amber-300 text-xs' />
-                  <p className='text-gray-700 dark:text-gray-200 text-sm sm:text-base'>
+                  <FaEnvelope className='text-amber-500 text-lg' />
+                  <p className='text-foreground font-medium text-sm sm:text-base'>
                     {email}
                   </p>
                 </div>
                 <div className='flex items-center flex-wrap gap-3 sm:gap-4'>
-                  <FaLocationArrow className='text-red-600 text-xs' />
-                  <p className='text-gray-700 dark:text-gray-200 text-sm sm:text-base'>
+                  <FaLocationArrow className='text-red-500 text-lg' />
+                  <p className='text-foreground font-medium text-sm sm:text-base'>
                     Bekasi Utara, Kota Bekasi, 17121
                   </p>
                 </div>
@@ -145,9 +145,9 @@ export function ContactMe ({ userData }) {
           variants={fadeInRight}
           initial='hidden'
           animate={isInView ? 'visible' : 'hidden'}
-          className='w-full h-full min-h-[85vh] sm:min-h-full bg-white dark:bg-gray-800 p-6 sm:p-8 lg:p-11 rounded-2xl shadow-md flex flex-col justify-between'
+          className='w-full h-full min-h-[85vh] sm:min-h-full bg-card border border-border p-6 sm:p-8 lg:p-11 rounded-2xl shadow-xl flex flex-col justify-between'
         >
-          <h2 className='text-indigo-600 text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8'>
+          <h2 className='text-foreground text-2xl sm:text-3xl font-bold tracking-tight mb-6 sm:mb-8'>
             Send Me A Message
           </h2>
 
@@ -251,9 +251,8 @@ export function ContactMe ({ userData }) {
               />
               <Button
                 type='submit'
-                variant='outline'
                 disabled={loading || !form.formState.isValid}
-                className='w-full h-12 rounded-full bg-white hover:bg-indigo-700 text-indigo-700 dark:text-indigo-400 hover:text-white dark:hover:text-white font-semibold transition-colors duration-300 cursor-pointer'
+                className='w-full h-12 rounded-full font-semibold transition-all duration-300 shadow-md hover:scale-[1.02]'
               >
                 {loading ? 'Sending...' : 'Submit'}
               </Button>

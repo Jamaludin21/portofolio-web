@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import React from 'react'
-// import { ThemeToggle } from '@/components/ui/theme-toggle'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { useCurrentPath } from '@/hooks/useCurrentPath'
 import { toCamelText } from '@/lib/helper'
 import { GithubIcon, LinkedinIcon } from '@/lib/constants'
@@ -78,7 +78,7 @@ export function SiteHeader () {
             </a>
           </Button>
 
-          {/* <ThemeToggle /> */}
+          <ThemeToggle />
         </div>
       </div>
     </header>

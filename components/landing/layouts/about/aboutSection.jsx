@@ -6,11 +6,16 @@ import { SmartContentRenderer } from '@/hooks/useSmartRender'
 import { motion } from 'framer-motion'
 import dayjs from 'dayjs'
 import { Skeleton } from '@/components/ui/skeleton'
-import { GithubIcon, LinkedinIcon } from 'lucide-react'
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { useRandomBackground } from '@/hooks/useTheme'
-import { fadeInLeft, fadeInRight, staggerContainer } from '@/lib/constants'
+import {
+  fadeInLeft,
+  fadeInRight,
+  GithubIcon,
+  LinkedinIcon,
+  staggerContainer
+} from '@/lib/constants'
 
 export function AboutSection ({
   id,
@@ -39,12 +44,10 @@ export function AboutSection ({
       case 'hero':
         return (
           <div className='space-y-6'>
-            <h2 className='text-4xl lg:text-5xl font-bold text-gray-600 dark:text-gray-200'>
+            <h2 className='text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground'>
               {items.name}
             </h2>
-            <p className='text-xl text-indigo-600 font-semibold'>
-              {items.role}
-            </p>
+            <p className='text-xl font-semibold text-primary'>{items.role}</p>
             <div className='flex items-center gap-4'>
               <a
                 href='https://github.com/Jamaludin21'
@@ -76,13 +79,15 @@ export function AboutSection ({
                 </Button>
               </a>
             </div>
-            <p className='text-lg text-gray-600 dark:text-gray-200 leading-8'>
-              {items.summary}
+            <p className='text-lg leading-relaxed text-muted-foreground'>
+              {
+                'I engineer scalable web applications with a focus on clean code and intuitive design. Through the integration of robust backend designs with modern JavaScript libraries, I engineer efficient and engaging web experiences.'
+              }
             </p>
-            <h2 className='text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-500'>
+            <h2 className='text-2xl lg:text-3xl font-bold tracking-tight text-foreground'>
               Technical Skill
             </h2>
-            <ul className='grid grid-cols-2 gap-x-6 gap-y-4 text-lg text-gray-700 dark:text-gray-300 list-disc list-inside'>
+            <ul className='grid grid-cols-2 gap-x-6 gap-y-4 text-lg text-muted-foreground list-disc list-inside'>
               {itemsSkill.map((skill, idx) => (
                 <li key={idx}>{skill.name}</li>
               ))}
@@ -91,21 +96,21 @@ export function AboutSection ({
         )
       case 'experience':
         return (
-          <div className='space-y-12'>
-            <h2 className='text-2xl lg:text-3xl font-bold text-gray-600 dark:text-gray-200 underline'>
+          <div className='space-y-8'>
+            <h2 className='text-2xl lg:text-3xl font-bold tracking-tight text-foreground underline decoration-primary/50 underline-offset-8 mb-6'>
               Work Experience
             </h2>
             {items.map(item => (
-              <div key={item.id} className='flex justify-between'>
+              <div key={item.id} className='flex justify-between mb-6'>
                 <div
                   className={cn(
                     item.imageUrl ? 'md:col-span-3' : 'md:col-span-4'
                   )}
                 >
-                  <h3 className='text-xl font-semibold text-gray-800 dark:text-gray-400'>
+                  <h3 className='text-xl font-semibold text-foreground'>
                     {item.title}
                   </h3>
-                  <p className='text-sm text-gray-500 mb-2'>
+                  <p className='text-sm text-muted-foreground mb-3 font-medium'>
                     {item.company} · {dayjs(item.startDate).format('MMM YYYY')}{' '}
                     –{' '}
                     {item.endDate
@@ -114,7 +119,7 @@ export function AboutSection ({
                   </p>
                   <SmartContentRenderer
                     content={item.content}
-                    className='text-gray-600 dark:text-gray-200 text-sm leading-7'
+                    className='text-muted-foreground text-sm leading-relaxed'
                   />
                 </div>
                 {item.imageUrl && (
@@ -130,7 +135,7 @@ export function AboutSection ({
                 )}
               </div>
             ))}
-            <h2 className='text-2xl lg:text-3xl font-bold text-gray-600 dark:text-gray-200 underline'>
+            <h2 className='text-2xl lg:text-3xl font-bold tracking-tight text-foreground underline decoration-primary/50 underline-offset-8 my-6'>
               Education
             </h2>
             {itemsEducation.map(edu => (
@@ -140,13 +145,13 @@ export function AboutSection ({
                     edu.imageUrl ? 'md:col-span-3' : 'md:col-span-4'
                   )}
                 >
-                  <h3 className='text-xl font-semibold text-gray-800 dark:text-gray-400'>
+                  <h3 className='text-xl font-semibold text-foreground'>
                     {edu.school}
                   </h3>
-                  <p className='text-sm text-gray-500 mb-2'>
+                  <p className='text-sm font-medium text-primary mb-3'>
                     {edu.degree} · {edu.major}
                   </p>
-                  <p className='text-sm text-gray-600 dark:text-gray-200'>
+                  <p className='text-sm text-muted-foreground leading-relaxed'>
                     {edu.description}
                   </p>
                 </div>
@@ -223,7 +228,7 @@ export function AboutSection ({
       }}
     >
       {/* ✅ Dark overlay behind content */}
-      <div className='absolute inset-0 bg-black/40 dark:bg-black/60 z-0' />
+      <div className='absolute inset-0 bg-background/80 dark:bg-background/90 z-0 backdrop-blur-[2px]' />
       <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div
           className={cn(

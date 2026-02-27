@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-// import { ThemeToggle } from '@/components/ui/theme-toggle'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -35,7 +35,7 @@ export function NavbarLanding () {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className='fixed top-0 z-50 w-full px-6 backdrop-blur-sm dark:bg-black/60 bg-white/70 shadow-sm'
+        className='fixed top-0 z-50 w-full px-6 backdrop-blur-md bg-background/80 border-b border-border shadow-sm'
       >
         <div className='flex h-16 items-center justify-between max-w-7xl mx-auto'>
           {/* Logo */}
@@ -51,7 +51,9 @@ export function NavbarLanding () {
               className='rounded-full object-cover shadow-sm border border-border'
               priority
             />
-            <span className='text-lg font-bold'>James Dev</span>
+            <span className='text-lg font-extrabold tracking-tight text-foreground'>
+              James Dev
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -85,7 +87,7 @@ export function NavbarLanding () {
                 </Button>
               </Link>
             </div>
-            {/* <ThemeToggle /> */}
+            <ThemeToggle />
             {/* Mobile menu toggle */}
             <Button
               className='md:hidden p-2'
